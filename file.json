@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"State.53f562f0-2f98-45f8-8487-03950b976f2c": {"created_at": "2022-10-12T19:29:29.107425", "id": "53f562f0-2f98-45f8-8487-03950b976f2c", "__class__": "State", "name": "cali", "updated_at": "2022-10-12T20:40:07.189743"}}
-=======
 {"State.fe5cd3d6-8ccf-44cf-9b28-51a8af7dca2d": {"id": "fe5cd3d6-8ccf-44cf-9b28-51a8af7dca2d", "__class__": "State", "name": "California", "created_at": "2022-10-12T19:41:18.135608", "updated_at": "2022-10-12T19:41:18.135779"}, "State.53f562f0-2f98-45f8-8487-03950b976f2c": {"id": "53f562f0-2f98-45f8-8487-03950b976f2c", "__class__": "State", "name": "California", "created_at": "2022-10-12T19:29:29.107425", "updated_at": "2022-10-12T19:29:29.107612"}}
->>>>>>> c0d92ed70b013f0a2a889771d71ccecbe62f78c3
