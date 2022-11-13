@@ -1,55 +1,31 @@
 #!/usr/bin/python3
-"this module defines and runs a flask application"
+"""script that starts a Flask web application"""
+
 from flask import Flask, render_template
-
-
+from models import storage
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
-def hello_world():
-    """Returns 'Hello HBNB'"""
-    return "Hello HBNB!"
+@app.teardown_appcontext
+def remSqlalchemy(self):
+    storage.close()
 
 
-@app.route('/hbnb', strict_slashes=False)
-def hbnb():
-    """Returns 'HBNB'"""
-    return "HBNB"
+@app.route('/states', strict_slashes=False)
+def statesList():
+    """Displays a State list"""
+    states = storage.all("State").values()
+    return render_template('7-states_list.html', states=states)
 
 
-@app.route('/c/<text>', strict_slashes=False)
-def c(text):
-    """Returns 'C {text}'"""
-    return "C {}".format(text.replace('_', ' '))
-
-
-@app.route('/python', strict_slashes=False)
-@app.route('/python/<text>', strict_slashes=False)
-def python(text="is cool"):
-    """Returns 'Python {text}'"""
-    return "Python {}".format(text.replace('_', ' '))
-
-
-@app.route('/number/<int:n>', strict_slashes=False)
-def number(n):
-    """Checks if n is a number"""
-    return "{} is a number".format(n)
-
-
-@app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template(n):
-    """Displays a HTML Page only if n is an integer"""
-    return render_template('5-number.html', n=n)
-
-
-@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def number_odd_or_even(n):
-    if n % 2 == 0:
-        odd_even = "even"
-    else:
-        odd_even = "odd"
-    return render_template('6-number_odd_or_even.html', n=n, odd_even=odd_even)
+@app.route('/states/<id>', strict_slashes=False)
+def stateByID(id):
+    """shows an specific state"""
+    states = storage.all("State").values()
+    for state in states:
+        if state.id == id:
+            return render_template('9-states.html', state=state)
+    return render_template('9-states.html', state=None)
 
 
 if __name__ == '__main__':
