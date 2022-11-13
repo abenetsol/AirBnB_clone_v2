@@ -1,56 +1,58 @@
-#!/usr/bin/python3
-"""This module defines and runs a flask application"""
+#!/usr/bin/python
+"script that starts a Flask web application"
+
+from cgitb import html
 from flask import Flask, render_template
-
-
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello_world():
-    """Returns 'Hello HBNB'"""
-    return "Hello HBNB!"
+def hello():
+    """displays “Hello HBNB!”"""
+    return 'Hello HBNB!'
 
 
 @app.route('/hbnb', strict_slashes=False)
-def hbnb():
-    """Returns 'HBNB'"""
-    return "HBNB"
+def holberton():
+    """displays “HBNB”"""
+    return 'HBNB'
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def c(text):
-    """Returns 'C {text}'"""
-    return "C {}".format(text.replace('_', ' '))
+def cisfun(text):
+    """displays “C ” followed by the value of the text variable"""
+    return 'C ' + text.replace("_", " ")
 
 
-@app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python(text="is cool"):
-    """Returns 'Python {text}'"""
-    return "Python {}".format(text.replace('_', ' '))
+@app.route('/python', strict_slashes=False)
+def pythonis(text='is cool'):
+    """displays “Python ”, followed by the value of the text variable"""
+    return 'Python ' + text.replace("_", " ")
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
-    """Checks if n is a number"""
-    return "{} is a number".format(n)
+    """displays “n is a number” only if n is an integer"""
+    return '{} is a number'.format(n)
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template(n):
-    """Displays a HTML Page only if n is an integer"""
-    return render_template('5-number.html', n=n)
+def numberTemplate(n):
+    """displays a HTML page only if n is an integer"""
+    return render_template('5-number.html', number=n)
 
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def number_odd_or_even(n):
+def oddOrEven(n):
+    """displays a HTML page only if n is an integer and adds text (odd/even)
+    to html template"""
     if n % 2 == 0:
-        odd_even = "even"
+        oddOrEven = '{} is even'.format(n)
     else:
-        odd_even = "odd"
-    return render_template('6-number_odd_or_even.html', n=n, odd_even=odd_even)
+        oddOrEven = '{} is odd'.format(n)
+    return render_template('6-number_odd_or_even.html', oddOrEven=oddOrEven)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port='5000')
