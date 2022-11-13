@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 "script that starts a Flask web application"
 
 from cgitb import html
